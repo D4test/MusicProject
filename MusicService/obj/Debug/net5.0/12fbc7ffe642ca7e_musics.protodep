@@ -1,0 +1,2 @@
+obj\Debug\net5.0\Protos/Musics.cs \
+obj\Debug\net5.0\Protos/MusicsGrpc.cs: Protos/musics.proto

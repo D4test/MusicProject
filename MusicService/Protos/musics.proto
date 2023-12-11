@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "MusicService";
+
+service GrpcMusic {
+    rpc GetAllMusics (GetAllRequest) returns (MusicResponse);
+}
+
+message GetAllRequest {}
+
+message GrpcMusicModel{
+    int32 musicId = 1;
+    string name = 2;
+    string genre = 3;
+}
+
+message MusicResponse {
+    repeated GrpcMusicModel music = 1;
+}

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lyrics-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lyricservice
+  template:
+    metadata:
+      labels:
+        app: lyricservice
+    spec:
+      containers:
+        - name: lyricservice
+          image: d4test/lyricservice:latest 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lyrics-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: lyricservice
+  ports:
+  - name: lyricservice
+    protocol: TCP
+    port: 80
+    targetPort: 80

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: musics-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: musicservice
+  template:
+    metadata:
+      labels:
+        app: musicservice
+    spec:
+      containers:
+        - name: musicservice
+          image: d4test/musicservice:latest 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: musics-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: musicservice
+  ports:
+  - name: musicservice
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  - name: musicgrpc
+    protocol: TCP
+    port: 666
+    targetPort: 666
